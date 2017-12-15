@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import styled from 'styled-components';
-
-const Background = styled.div`
-  height: 100vh;
-  background: linear-gradient(to bottom right, #667eea, #764ba2);
-`;
+import './index.css';
 
 const HeaderWrapper = styled.div`
   margin-bottom: 1.5rem;
@@ -32,10 +28,11 @@ const NavLink = styled(Link)`
   color: inherit;
   text-transform: uppercase;
   margin-right: 1.5rem;
+  padding: 0px 3px 0px;
 
   &:hover {
-    text-decoration: underline;
     color: inherit;
+    opacity: 0.8;
   }
 
   &:visited {
@@ -43,19 +40,20 @@ const NavLink = styled(Link)`
   }
 `;
 
+const active = { borderBottom: '2px solid whitesmoke' };
+
 const Header = () => (
   <HeaderWrapper>
     <h1>m|m</h1>
     <Navigation>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/contact">Contact</NavLink>
-      <NavLink to="/work">Work</NavLink>
+      <NavLink exact to="/" activeStyle={active}>Home</NavLink>
+      <NavLink to="/work" activeStyle={active}>Work</NavLink>
     </Navigation>
   </HeaderWrapper>
 );
 
 const TemplateWrapper = ({ children }) => (
-  <Background>
+  <div>
     <Helmet
       title="Michael Meyerson"
       meta={[
@@ -66,14 +64,14 @@ const TemplateWrapper = ({ children }) => (
     <div
       style={{
         margin: '0 auto',
-        maxWidth: 650,
+        maxWidth: 800,
         padding: '1.45rem 1.0875rem',
       }}
     >
       <Header />
       {children()}
     </div>
-  </Background>
-)
+  </div>
+);
 
-export default TemplateWrapper
+export default TemplateWrapper;
